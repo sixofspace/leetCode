@@ -14,6 +14,28 @@ public:
     int trap(vector<int>& height) {
 
 
+        // //1.先暴力求解
+        // if (height.size() <=2 )
+        // {
+        //     return 0;
+        // }
+        
+        // int arc = 0 ;
+        // for (int i = 1; i < height.size() - 1; i++)
+        // {   int L = 0;
+        //     int R = 0;
+        //     for (int l = i; l >= 0 ; l--)
+        //     {
+        //         L = max(L , height[l]);
+        //     }
+        //     for (int r = i; r < height.size() ; r++)
+        //     {
+        //        R = max(R,height[r]);
+        //     }
+        //     arc += min(L,R) - height[i];
+        // }
+        
+        // return arc;
 //思路：首先从左向右遍历得到每一个当前位置的前面所有的最大值 leftMax(i)，
         //然后从右向左遍历得到每一个当前位置后面的最大值 rightMax(i)
         //那么此时当前位置能够盛的雨水值为 min(rightMax(i),leftMax(i)) - height(i)
