@@ -1,3 +1,11 @@
+// @before-stub-for-debug-begin
+#include <vector>
+#include <string>
+#include "commoncppproblem20.h"
+
+using namespace std;
+// @before-stub-for-debug-end
+
 /*
  * @lc app=leetcode.cn id=20 lang=cpp
  *
@@ -22,7 +30,6 @@ public:
            return false;
         }
         
-        int flag = false;
         stack<char> t;
         for (int i = 0; i < n; i++)
         {
@@ -32,7 +39,7 @@ public:
             }
             if ( s[i] == ')' )
             {
-                if (t.top() == '(' && !t.empty())
+                if ( !t.empty() && t.top() == '(')
                 {
                     t.pop();
                 }else{
@@ -40,7 +47,7 @@ public:
                 }               
             }else if (s[i] == ']'  )
             {
-                if (t.top() == '[' && !t.empty() )
+                if ( !t.empty() && t.top() == '[' )
                 {
                     t.pop();
                 }else{
@@ -48,7 +55,7 @@ public:
                 }  
             }else if (s[i] == '}' )
             {
-                if (t.top() == '{' && !t.empty())
+                if ( !t.empty() && t.top() == '{')
                 {
                     t.pop();
                 }else{
