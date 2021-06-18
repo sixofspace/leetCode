@@ -11,19 +11,19 @@ using namespace std;
  *
  * [111] 二叉树的最小深度
  */
-#include <vector>
-#include <queue>
-#include <iostream>
-using namespace std;
-struct TreeNode
-{
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+// #include <vector>
+// #include <queue>
+// #include <iostream>
+// using namespace std;
+// struct TreeNode
+// {
+//     int val;
+//     TreeNode *left;
+//     TreeNode *right;
+//     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+//     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+//     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+// };
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -68,9 +68,9 @@ public:
         while (!q.empty())
         {
             int currentSize = q.size();
+            depth++;
             for (int i = 0; i < currentSize; i++)
             {
-                depth++;
                 TreeNode* tmpNode = q.front();
                 q.pop();
                 if (tmpNode->left == nullptr && tmpNode->right == nullptr)
@@ -88,7 +88,6 @@ public:
             }
             
         }
-        
         return 0;
     }
 };
