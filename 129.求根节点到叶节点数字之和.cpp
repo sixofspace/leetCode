@@ -1,15 +1,7 @@
-// @before-stub-for-debug-begin
-#include <vector>
-#include <string>
-#include "commoncppproblem114.h"
-
-using namespace std;
-// @before-stub-for-debug-end
-
 /*
- * @lc app=leetcode.cn id=114 lang=cpp
+ * @lc app=leetcode.cn id=129 lang=cpp
  *
- * [114] 二叉树展开为链表
+ * [129] 求根节点到叶节点数字之和
  */
 #include <vector>
 #include <queue>
@@ -36,34 +28,37 @@ struct TreeNode
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution
-{
+class Solution {
 public:
-    TreeNode *t = nullptr;
-    // void inorder(TreeNode *tmp, TreeNode *root)
-    // {
-    //     if (root && tmp)
-    //     {
-    //         tmp->left = nullptr;
-    //         tmp->right = root;
-    //         inorder(tmp->right, root->left);
-    //         inorder(tmp->right, root->right);
-    //     }
-    // }
-    void flatten(TreeNode *root)
-    {
-        //牛逼解法
+
+// s深度遍历和广度遍历
+    vector<int> res;
+    int pathSum = 0;
+    void testback(vector<int> &res ,int pathSum ,TreeNode* root ){
         if (!root)
         {
             return;
         }
-        flatten(root->right);
-        flatten(root->left);
-        root->right = t;
-        root->left = nullptr;
-        t = root;
+        pathSum = pathSum*10 + root->val;
+        if (root->left == nullptr && root->right == nullptr)
+        {
+             res.push_back(pathSum);
+        }
+        testback(res,pathSum,root->left);
+        testback(res,pathSum,root->right);
+        pathSum = (pathSum - root->val)/10;
 
-
+    }
+    int sumNumbers(TreeNode* root) {
+        testback(res,pathSum,root);
+        int sumnumber = 0;
+        for (int & s:res)
+        {
+            sumnumber += s;
+        }
+        
+        return sumnumber;
     }
 };
 // @lc code=end
+
