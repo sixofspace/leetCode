@@ -57,9 +57,12 @@ public:
         while (tailNode != righttail)
         {
             ListNode* nex = lefthead->next;
-            lefthead->next = 
+            lefthead->next = tailNode;
+            tailNode = lefthead;
+            lefthead = nex;
         }
-        
+        headNode->next = righttail;
+        return dump->next;
 
     }
 };
