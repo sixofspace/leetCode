@@ -53,7 +53,7 @@ public:
             pre = pre->next;
             k++;
         }
-        tailNode = righttail->next;
+        tailNode = righttail->next; // 遍历更改了指针的指向
         while (tailNode != righttail)
         {
             ListNode* nex = lefthead->next;
