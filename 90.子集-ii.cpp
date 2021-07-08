@@ -14,24 +14,26 @@ class Solution {
 public:
     vector<vector<int>> res;
     vector<int> t;
-    void backtracking(vector<int>& nums , vector<int> &path ,int startindex ){
+    void backtracking(vector<int>& nums , vector<int> &path ,int startindex,vector<bool> &used ){
         res.push_back(path);
-        for (int i = 0; i < nums.size(); i++)
+        for (int i = startindex; i < nums.size(); i++)
         {
-            if (i > startindex &&  nums[i] == nums[i-1])
+            if (i > 0 &&  nums[i] == nums[i-1] && used[i -1] == false)
             {
                 continue;
             }
-            
+            used[i] = true;
             path.push_back(nums[i]);
-            backtracking(nums, path , i + 1);
+            backtracking(nums, path , i + 1 ,used);
             path.pop_back();
+            used[i] = false;
         }
         
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-        backtracking(nums,t,0);
+        vector<bool> used(nums.size(),false);
+        backtracking(nums,t,0,used);
         return res;
     }
 };

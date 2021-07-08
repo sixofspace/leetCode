@@ -15,31 +15,62 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    void backtrack(vector<string>& ans, string& cur, int open, int close, int n) {
-        if ( cur.size() == n * 2)
-        {
-            ans.push_back(cur);
-            return ;
-        }
-        if ( open < n)
-        {
-            cur.push_back('(');
-            backtrack(ans,cur,open + 1 ,close,n);
-            cur.pop_back();
-        }
+    // 回溯解法
+    // void backtrack(vector<string>& ans, string& cur, int open, int close, int n) {
+    //     if ( cur.size() == n * 2)
+    //     {
+    //         ans.push_back(cur);
+    //         return ;
+    //     }
+    //     if ( open < n)
+    //     {
+    //         cur.push_back('(');
+    //         backtrack(ans,cur,open + 1 ,close,n);
+    //         cur.pop_back();
+    //     }
 
-        if (close < open)
-        {
-            cur.push_back(')');
-            backtrack(ans,cur,open,close + 1,n);
-            cur.pop_back();
-        }
-    }
+    //     if (close < open)
+    //     {
+    //         cur.push_back(')');
+    //         backtrack(ans,cur,open,close + 1,n);
+    //         cur.pop_back();
+    //     }
+    // }
+    // vector<string> generateParenthesis(int n) {
+    //     vector<string> result;
+    //     string current;
+    //     backtrack(result , current , 0,0,n);
+    //     return result;
+    // }
+
+
     vector<string> generateParenthesis(int n) {
-        vector<string> result;
-        string current;
-        backtrack(result , current , 0,0,n);
-        return result;
+        //动态规划解法https://leetcode-cn.com/problems/generate-parentheses/solution/zui-jian-dan-yi-dong-de-dong-tai-gui-hua-bu-lun-da/
+        if (n == 0)
+        {
+           return {};
+        }
+        if (n == 1)
+        {
+           return {"()"};
+        }
+        vector<vector<string>> dp(n+1);
+        dp[0] = {""};
+        dp[1] = {"()"};
+        for (int i = 2; i <= n; i++)
+        {
+            for (int j = 0; j < i; j++)
+            {
+                for(string p:dp[j]){
+                    for(string q:dp[i-j-1]){
+                        string str = "(" + p + ")" +q;
+                        dp[i].push_back(str);
+                    }
+                }
+            }
+            
+        }
+        return dp[n];
     }
 };
 // @lc code=end
