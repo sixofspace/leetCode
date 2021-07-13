@@ -29,6 +29,20 @@ public:
         return true;
 
     }
+
+    bool dfs(int i1 , int i2 , int length){
+        if (memo[i1][i2][length])
+        {
+            return memo[i1][i2][length] == 1;
+        }
+        
+        if (s1.substr(i1,length) == s2.)
+        {
+           
+        }
+        
+    }
+
     bool isScramble(string s1, string s2) {
 
     }
