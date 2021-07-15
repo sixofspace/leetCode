@@ -35,6 +35,8 @@ public:
     backtrack(nums,t,0);
     return res;
     }
+
+    //使用枚举法 位运算 https://leetcode-cn.com/problems/subsets/solution/mei-ju-er-jin-zhi-zi-ji-xiang-jie-zhe-ch-74k4/
 };
 // @lc code=end
 
